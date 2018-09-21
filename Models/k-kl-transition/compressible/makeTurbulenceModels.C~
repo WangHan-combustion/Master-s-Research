@@ -1,0 +1,52 @@
+#include "turbulentFluidThermoModel.H"
+#include "addToRunTimeSelectionTable.H"
+#include "makeTurbulenceModel.H"
+
+namespace Foam
+{
+
+typedef ThermalDiffusivity<CompressibleTurbulenceModel<fluidThermo> >
+    fluidThermoCompressibleTurbulenceModel;
+
+typedef RASModel<EddyDiffusivity<fluidThermoCompressibleTurbulenceModel> >
+    RASfluidThermoCompressibleTurbulenceModel;
+
+typedef RASModel<EddyDiffusivity<fluidThermoCompressibleTurbulenceModel> >
+    RASfluidThermoCompressibleTurbulenceModel;
+
+//typedef RASModel<EddyDiffusivity<fluidThermoCompressibleTurbulenceModel> >
+//    RASfluidThermoCompressibleTurbulenceModel;
+
+}
+
+#include "kOmegaSSTSASnew.H"
+makeTemplatedTurbulenceModel
+(
+    fluidThermoCompressibleTurbulenceModel,
+    RAS,
+    kOmegaSSTSASnew
+);
+
+//#include "kOmegaSSTLowRe.H"
+//makeTemplatedTurbulenceModel
+//(
+//    fluidThermoCompressibleTurbulenceModel,
+//    RAS,
+//    kOmegaSSTLowRe
+//);
+
+
+#include "SpalartAllmarasNoft2.H"
+makeTemplatedTurbulenceModel
+(
+    fluidThermoCompressibleTurbulenceModel,
+    RAS,
+    SpalartAllmarasNoft2
+);
+#include "WrayAgarwal.H"
+makeTemplatedTurbulenceModel
+(
+    fluidThermoCompressibleTurbulenceModel,
+    RAS,
+    WrayAgarwal
+);

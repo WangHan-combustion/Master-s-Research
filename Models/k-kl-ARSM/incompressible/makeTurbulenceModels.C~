@@ -1,0 +1,50 @@
+#include "IncompressibleTurbulenceModel.H"
+#include "incompressible/transportModel/transportModel.H"
+#include "addToRunTimeSelectionTable.H"
+#include "makeTurbulenceModel.H"
+
+#include "RASModel.H"
+
+namespace Foam
+{
+    typedef IncompressibleTurbulenceModel<transportModel> 
+        transportModelIncompressibleTurbulenceModel;
+    typedef RASModel<transportModelIncompressibleTurbulenceModel>
+        RAStransportModelIncompressibleTurbulenceModel;
+	typedef RASModel<transportModelIncompressibleTurbulenceModel>
+        RAStransportModelIncompressibleTurbulenceModel;
+//	typedef RASModel<transportModelIncompressibleTurbulenceModel>
+//        RAStransportModelIncompressibleTurbulenceModel;
+}
+
+#include "kOmegaSSTSASnew.H"
+makeTemplatedTurbulenceModel
+(
+    transportModelIncompressibleTurbulenceModel,
+    RAS,
+    kOmegaSSTSASnew
+);
+
+//#include "kOmegaSSTLowRe.H"
+//makeTemplatedTurbulenceModel
+//(
+//    transportModelIncompressibleTurbulenceModel,
+//    RAS,
+//    kOmegaSSTLowRe
+//);
+
+#include "SpalartAllmarasNoft2.H"
+makeTemplatedTurbulenceModel
+(
+    transportModelIncompressibleTurbulenceModel,
+    RAS,
+    SpalartAllmarasNoft2
+);
+
+#include "WrayAgarwal.H"
+makeTemplatedTurbulenceModel
+(
+    transportModelIncompressibleTurbulenceModel,
+    RAS,
+    WrayAgarwal
+);
